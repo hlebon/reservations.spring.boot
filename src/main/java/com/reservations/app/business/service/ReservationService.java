@@ -36,6 +36,7 @@ public class ReservationService {
         Map<Long, RoomReservation> roomReservationMap = new HashMap<>();
         rooms.forEach(room -> {
             RoomReservation roomReservation = new RoomReservation();
+            roomReservation.setRoomName(room.getName());
             roomReservation.setRoomId(room.getId());
             roomReservation.setRoomNumber(room.getNumber());
             roomReservationMap.put(room.getId(), roomReservation);
@@ -47,7 +48,7 @@ public class ReservationService {
             reservations.forEach(reservation -> {
                 Guest guest = this.guestRepository.findOne(reservation.getGuestId());
                 if(guest != null){
-                    RoomReservation roomReservation = roomReservationMap.get(reservation.getGuestId());
+                    RoomReservation roomReservation = roomReservationMap.get(reservation.getId());
                     roomReservation.setDate(date);
                     roomReservation.setFirstName(guest.getFirst_name());
                     roomReservation.setLastName(guest.getLast_name());

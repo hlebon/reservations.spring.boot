@@ -5,6 +5,26 @@
     <title>Reservations</title>
 </head>
 <body>
-    <h1>We are at the reservations endpoint</h1>
+    <h1>Welcome to the reservation page</h1>
+    <p>
+        <label for="date">Date</label>
+        <input id="date" type="datetime-local"/>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Room</th>
+                <th>Room number</th>
+                <th>Guest</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="roomReservation: ${roomReservations}">
+                <td th:text="${roomReservation.roomName}">Room Name</td>
+                <td th:text="${roomReservation.roomNumber}">Room Number</td>
+                <td th:text="${roomReservation.lastName}!=null? ${roomReservation.lastName} + ', ' + ${roomReservation.firstName} : 'VACANT'">Full Name</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
